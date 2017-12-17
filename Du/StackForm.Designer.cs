@@ -37,9 +37,6 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.infolabel = new System.Windows.Forms.Label();
             this.操作ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.顺序栈运算ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.链栈运算ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,6 +44,9 @@
             this.判断ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.回文判断ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.括号配对ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.infolabel = new System.Windows.Forms.Label();
             this.BackBtn = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -129,6 +129,62 @@
             this.menuStrip1.TabIndex = 8;
             this.menuStrip1.Text = "menuStrip1";
             // 
+            // 操作ToolStripMenuItem
+            // 
+            this.操作ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.顺序栈运算ToolStripMenuItem,
+            this.链栈运算ToolStripMenuItem,
+            this.队列运算ToolStripMenuItem,
+            this.判断ToolStripMenuItem});
+            this.操作ToolStripMenuItem.Name = "操作ToolStripMenuItem";
+            this.操作ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
+            this.操作ToolStripMenuItem.Text = "操作";
+            this.操作ToolStripMenuItem.Click += new System.EventHandler(this.操作ToolStripMenuItem_Click);
+            // 
+            // 顺序栈运算ToolStripMenuItem
+            // 
+            this.顺序栈运算ToolStripMenuItem.Name = "顺序栈运算ToolStripMenuItem";
+            this.顺序栈运算ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.顺序栈运算ToolStripMenuItem.Text = "顺序栈运算";
+            this.顺序栈运算ToolStripMenuItem.Click += new System.EventHandler(this.顺序栈运算ToolStripMenuItem_Click);
+            // 
+            // 链栈运算ToolStripMenuItem
+            // 
+            this.链栈运算ToolStripMenuItem.Name = "链栈运算ToolStripMenuItem";
+            this.链栈运算ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.链栈运算ToolStripMenuItem.Text = "链栈运算";
+            this.链栈运算ToolStripMenuItem.Click += new System.EventHandler(this.链栈运算ToolStripMenuItem_Click);
+            // 
+            // 队列运算ToolStripMenuItem
+            // 
+            this.队列运算ToolStripMenuItem.Name = "队列运算ToolStripMenuItem";
+            this.队列运算ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.队列运算ToolStripMenuItem.Text = "队列运算";
+            this.队列运算ToolStripMenuItem.Click += new System.EventHandler(this.队列运算ToolStripMenuItem_Click);
+            // 
+            // 判断ToolStripMenuItem
+            // 
+            this.判断ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.回文判断ToolStripMenuItem,
+            this.括号配对ToolStripMenuItem});
+            this.判断ToolStripMenuItem.Name = "判断ToolStripMenuItem";
+            this.判断ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.判断ToolStripMenuItem.Text = "判断";
+            // 
+            // 回文判断ToolStripMenuItem
+            // 
+            this.回文判断ToolStripMenuItem.Name = "回文判断ToolStripMenuItem";
+            this.回文判断ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.回文判断ToolStripMenuItem.Text = "回文判断";
+            this.回文判断ToolStripMenuItem.Click += new System.EventHandler(this.回文判断ToolStripMenuItem_Click);
+            // 
+            // 括号配对ToolStripMenuItem
+            // 
+            this.括号配对ToolStripMenuItem.Name = "括号配对ToolStripMenuItem";
+            this.括号配对ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.括号配对ToolStripMenuItem.Text = "括号配对";
+            this.括号配对ToolStripMenuItem.Click += new System.EventHandler(this.括号配对ToolStripMenuItem_Click);
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -155,62 +211,6 @@
             this.infolabel.Size = new System.Drawing.Size(41, 12);
             this.infolabel.TabIndex = 11;
             this.infolabel.Text = "label4";
-            // 
-            // 操作ToolStripMenuItem
-            // 
-            this.操作ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.顺序栈运算ToolStripMenuItem,
-            this.链栈运算ToolStripMenuItem,
-            this.队列运算ToolStripMenuItem,
-            this.判断ToolStripMenuItem});
-            this.操作ToolStripMenuItem.Name = "操作ToolStripMenuItem";
-            this.操作ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
-            this.操作ToolStripMenuItem.Text = "操作";
-            this.操作ToolStripMenuItem.Click += new System.EventHandler(this.操作ToolStripMenuItem_Click);
-            // 
-            // 顺序栈运算ToolStripMenuItem
-            // 
-            this.顺序栈运算ToolStripMenuItem.Name = "顺序栈运算ToolStripMenuItem";
-            this.顺序栈运算ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.顺序栈运算ToolStripMenuItem.Text = "顺序栈运算";
-            this.顺序栈运算ToolStripMenuItem.Click += new System.EventHandler(this.顺序栈运算ToolStripMenuItem_Click);
-            // 
-            // 链栈运算ToolStripMenuItem
-            // 
-            this.链栈运算ToolStripMenuItem.Name = "链栈运算ToolStripMenuItem";
-            this.链栈运算ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.链栈运算ToolStripMenuItem.Text = "链栈运算";
-            this.链栈运算ToolStripMenuItem.Click += new System.EventHandler(this.链栈运算ToolStripMenuItem_Click);
-            // 
-            // 队列运算ToolStripMenuItem
-            // 
-            this.队列运算ToolStripMenuItem.Name = "队列运算ToolStripMenuItem";
-            this.队列运算ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.队列运算ToolStripMenuItem.Text = "队列运算";
-            this.队列运算ToolStripMenuItem.Click += new System.EventHandler(this.队列运算ToolStripMenuItem_Click);
-            // 
-            // 判断ToolStripMenuItem
-            // 
-            this.判断ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.回文判断ToolStripMenuItem,
-            this.括号配对ToolStripMenuItem});
-            this.判断ToolStripMenuItem.Name = "判断ToolStripMenuItem";
-            this.判断ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.判断ToolStripMenuItem.Text = "判断";
-            // 
-            // 回文判断ToolStripMenuItem
-            // 
-            this.回文判断ToolStripMenuItem.Name = "回文判断ToolStripMenuItem";
-            this.回文判断ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.回文判断ToolStripMenuItem.Text = "回文判断";
-            this.回文判断ToolStripMenuItem.Click += new System.EventHandler(this.回文判断ToolStripMenuItem_Click);
-            // 
-            // 括号配对ToolStripMenuItem
-            // 
-            this.括号配对ToolStripMenuItem.Name = "括号配对ToolStripMenuItem";
-            this.括号配对ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.括号配对ToolStripMenuItem.Text = "括号配对";
-            this.括号配对ToolStripMenuItem.Click += new System.EventHandler(this.括号配对ToolStripMenuItem_Click);
             // 
             // BackBtn
             // 
@@ -242,7 +242,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "StackForm";
-            this.Text = "StackForm";
+            this.Text = "栈";
             this.Load += new System.EventHandler(this.StackForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

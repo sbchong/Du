@@ -38,9 +38,10 @@ namespace Du
                 switch (ch)
                 {
                     case '(': top++; St[top] = p; k = 1; break;
-                    case ')':top--;break;
-                    case ',':k = 2;break;
-                    default:p = new BTNode();
+                    case ')': top--; break;
+                    case ',': k = 2; break;
+                    default:
+                        p = new BTNode();
                         p.lchild = p.rchild = null;
                         p.data = ch;
                         if (r == null)
@@ -74,7 +75,7 @@ namespace Du
             r = CreateBTNode21(ref r, ch, counter);
         }
 
-        public BTNode CreateBTNode21(ref BTNode t,char [] ch,int counter)
+        public BTNode CreateBTNode21(ref BTNode t, char[] ch, int counter)
         {
             if (ch == null)
                 t = null;
@@ -82,16 +83,16 @@ namespace Du
             {
                 if (counter < ch.Length)
                 {
-                    t = new BTNode();              
+                    t = new BTNode();
                     t.data = ch[counter];
                     t.lchild = t.rchild = null;
-                    CreateBTNode21(ref t.lchild,ch, counter*2);
-                    CreateBTNode21(ref t.rchild,ch, counter*2+1);
+                    CreateBTNode21(ref t.lchild, ch, counter * 2);
+                    CreateBTNode21(ref t.rchild, ch, counter * 2 + 1);
                 }
             }
             return t;
         }
-       
+
         public BTNode FindNode(string x)
         {
             char s;
@@ -116,7 +117,7 @@ namespace Du
                 if (p != null)
                     return p;
                 else
-                    return FindNode1(t.rchild,s);
+                    return FindNode1(t.rchild, s);
             }
         }
 
@@ -215,7 +216,7 @@ namespace Du
         public int Count21(BTNode t)
         {
             int i = 0;
-            BTNode []st = new BTNode[MaxSize];
+            BTNode[] st = new BTNode[MaxSize];
             int top = -1;
             BTNode p;
             top++;
@@ -228,15 +229,15 @@ namespace Du
                 if (p.rchild != null)
                 {
                     top++;
-                    st[top] =  p.rchild;
-             
+                    st[top] = p.rchild;
+
                 }
                 if (p.lchild != null)
                 {
                     top++;
                     st[top] = p.lchild;
                 }
-          
+
             }
             return i;
 
@@ -283,9 +284,9 @@ namespace Du
         {
             if (t != null)
             {
-                InOrder1(t.lchild);	                 
-                btstr += t.data.ToString() + " ";   
-                InOrder1(t.rchild);	             
+                InOrder1(t.lchild);
+                btstr += t.data.ToString() + " ";
+                InOrder1(t.rchild);
             }
         }
 
@@ -300,84 +301,153 @@ namespace Du
         {
             if (t != null)
             {
-                PostOrder1(t.lchild);	                
-                PostOrder1(t.rchild);	                
-                btstr += t.data.ToString() + " ";    
+                PostOrder1(t.lchild);
+                PostOrder1(t.rchild);
+                btstr += t.data.ToString() + " ";
             }
         }
 
-        public string Path(string str1,string str2)
+        public string Path(string str1, string str2)
         {
-            string pstr = " ";
-            string qstr = " ";
+            int i, j;
+            string pstr, apath;
+            string qstr, bpath;
             string str = " ";
+            string[] path1 = new string[MaxSize];
+            string[] path2 = new string[MaxSize];
             BTNode p = FindNode(str1);
             BTNode q = FindNode(str2);
-            pstr = Path1(p);
-            qstr = Path2(q);
-            return str;
-        } 
+            Path1(p,path1);
+            Path2(q,path2);
+            pstr = "";
+            qstr = "";
+            apath = path1[0];
+            bpath = path2[0];
+            for (i = apath.Length - 1; i > 0; i--)
+                pstr += apath[i].ToString() ;
+            pstr += apath[i].ToString();            for (j = bpath.Length - 1; j > 0; j--)
+                qstr += bpath[j].ToString() ;
+            qstr += bpath[j].ToString();
 
-        private string Path1(BTNode p)
-        {
-            btstr= "";
-            Path1(r,p);
-            return btstr;
+            str = PathAdd(pstr,qstr);            
+            return str;
         }
 
-        private void Path1(BTNode t,BTNode p)
+
+        private string PathAdd(string pstr,string qstr)
         {
-            if (t.data != p.data )
+            int j = 0;
+            char[] pch = pstr.ToCharArray();
+            char[] qch = qstr.ToCharArray();
+            for (int i = 0; i < pch.Length / 2; i++)
             {
-                btstr += t.data.ToString() + " ";
-                Path1(t.lchild, p);
+                char temp;
+                temp=pch[i];
+                pch[i] = pch[pch.Length - 1 - i];
+                pch[pch.Length - 1 - i] = temp;
             }
-            btstr += p.data.ToString() + " ";
-            
-            /*
-            string str = "";
-            BTNode[] st = new BTNode[MaxSize];
-            int top = -1;
-            top++;
-            st[top] = t;
-            while (top != -1)
+            char []path= pch.Union(qch).ToArray();        
+            for ( j = path.Length - 1; j > 0; j--)
+                btstr += path[j].ToString() + "→";
+            btstr += path[j].ToString();
+            return btstr; ;
+        }
+
+        private void Path1(BTNode p,params string []path1)
+        {
+            Path1(r, p, path1);
+
+        }
+
+        private void Path1(BTNode t, BTNode p, params string[] path1)
+        {
+            BTNode q;
+            int front = -1, rear = -1;
+            int n;
+            BTNode[] qu = new BTNode[MaxSize];
+            int[] parent = new int[MaxSize];
+            rear++;
+            qu[rear] = t;
+            parent[rear] = -1;
+
+            while (front != rear)
             {
-                p = st[top];
-                top--;
-                str += p.data.ToString();
-                if (p.rchild != null)
+                front++;
+                q = qu[front];
+                if (q == p)
                 {
-                    top++;
-                    st[top] = p.rchild;
+                    n = front;
+                    path1[0] = "";
+                    while (parent[n] != -1)
+                    {
+                        path1[0] += qu[n].data.ToString();
+                        n = parent[n];
+                    }
+                    path1[0] += qu[n].data.ToString();
+                }
+                if (q.lchild != null)
+                {
+                    rear++;
+                    qu[rear] = q.lchild;
+                    parent[rear] = front;
+                }
+                if (q.rchild != null)
+                {
+                    rear++;
+                    qu[rear] = q.rchild;
+                    parent[rear] = front;
+                }
+
+
+            }
+        }
+
+        private void Path2(BTNode q,params string []path2)
+        {
+            Path2(r, q, path2);
+        }
+
+        private void Path2(BTNode t, BTNode q,params string []path2)
+        {
+
+            BTNode p;
+            int front = -1, rear = -1;
+            int n;
+            BTNode[] qu = new BTNode[MaxSize];
+            int[] parent = new int[MaxSize];
+            rear++;
+            qu[rear] = t;
+            parent[rear] = -1;
+
+            while (front != rear)
+            {
+                front++;
+                p = qu[front];
+                if (p == q)
+                {
+                    n = front;
+                    path2[0] = "";
+                    while (parent[n] != -1)
+                    {
+                        path2[0] += qu[n].data.ToString();
+                        n = parent[n];
+                    }
+                    path2[0] += qu[n].data.ToString();
                 }
                 if (p.lchild != null)
                 {
-                    top++;
-                    st[top] = p.lchild;
+                    rear++;
+                    qu[rear] = p.lchild;
+                    parent[rear] = front;
+                }
+                if (p.rchild != null)
+                {
+                    rear++;
+                    qu[rear] = p.rchild;
+                    parent[rear] = front;
                 }
             }
 
-            return str;
-            */
         }
-
-        private string Path2(BTNode q)
-        {
-            btstr = "";
-            Path1(r, q);
-            return btstr;
-        }
-
-        private void Path2(BTNode t, BTNode q)
-        {
-            if (t.data != q.data)
-            {
-                Path2(t.rchild,q);
-                btstr += t.data.ToString() + " ";
-                
-            }
-            btstr += q.data.ToString() + " ";
-        }
-
     }
 }

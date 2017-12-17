@@ -84,7 +84,7 @@
             this.Controls.Add(this.StackBtn);
             this.Controls.Add(this.SQListBtn);
             this.Name = "MainForm";
-            this.Text = "MainForm";
+            this.Text = "主窗口";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
 

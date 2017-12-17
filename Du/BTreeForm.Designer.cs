@@ -113,9 +113,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(22, 430);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 12);
+            this.label1.Size = new System.Drawing.Size(53, 12);
             this.label1.TabIndex = 6;
-            this.label1.Text = "label1";
+            this.label1.Text = "提示信息";
             // 
             // PreOrderBtn
             // 
@@ -194,11 +194,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(32, 20);
+            this.label2.Location = new System.Drawing.Point(137, 20);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 12);
+            this.label2.Size = new System.Drawing.Size(161, 12);
             this.label2.TabIndex = 15;
-            this.label2.Text = "label2";
+            this.label2.Text = "在这里选择建立二叉树的方式";
             // 
             // textBox4
             // 
@@ -241,7 +241,8 @@
             this.Controls.Add(this.OutBtn);
             this.Controls.Add(this.CreaBtn);
             this.Name = "BTreeForm";
-            this.Text = "BTreeForm";
+            this.Text = "二叉树";
+            this.Load += new System.EventHandler(this.BTreeForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
