@@ -47,7 +47,7 @@ namespace Du
             string str = br.ReadString();
             string[] btstr = str.Split(',');
             // char[] ch = str.ToCharArray();
-            a = Array.ConvertAll(btstr,int.Parse);
+            //a = Array.ConvertAll(btstr,int.Parse);
             return true;
         }
 
