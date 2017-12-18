@@ -77,17 +77,24 @@ namespace Du
 
         public BTNode CreateBTNode21(ref BTNode t, char[] ch, int counter)
         {
+            string str="#";
+            char[] cv = str.ToCharArray();
             if (ch == null)
                 t = null;
             else
             {
                 if (counter < ch.Length)
                 {
-                    t = new BTNode();
-                    t.data = ch[counter];
-                    t.lchild = t.rchild = null;
-                    CreateBTNode21(ref t.lchild, ch, counter * 2);
-                    CreateBTNode21(ref t.rchild, ch, counter * 2 + 1);
+                    if (ch[counter] == cv[0])
+                        t = null;
+                    else
+                    {
+                        t = new BTNode();
+                        t.data = ch[counter];
+                        t.lchild = t.rchild = null;
+                        CreateBTNode21(ref t.lchild, ch, counter * 2);
+                        CreateBTNode21(ref t.rchild, ch, counter * 2 + 1);
+                    }
                 }
             }
             return t;
@@ -325,11 +332,13 @@ namespace Du
             bpath = path2[0];
             for (i = apath.Length - 1; i > 0; i--)
                 pstr += apath[i].ToString() ;
-            pstr += apath[i].ToString();            for (j = bpath.Length - 1; j > 0; j--)
+            pstr += apath[i].ToString();
+            for (j = bpath.Length - 1; j > 0; j--)
                 qstr += bpath[j].ToString() ;
             qstr += bpath[j].ToString();
 
-            str = PathAdd(pstr,qstr);            
+            str = PathAdd(pstr,qstr);
+            
             return str;
         }
 
@@ -349,7 +358,8 @@ namespace Du
             char []path= pch.Union(qch).ToArray();        
             for ( j = path.Length - 1; j > 0; j--)
                 btstr += path[j].ToString() + "→";
-            btstr += path[j].ToString();
+            btstr += path[j].ToString();
+
             return btstr; ;
         }
 
