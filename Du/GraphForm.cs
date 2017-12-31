@@ -97,6 +97,26 @@ namespace Du
             {
                 n = 25;
             }
+            else if (length >= 36 && length < 49)
+            {
+                n = 36;
+            }
+            else if (length >= 49 && length < 64)
+            {
+                n = 49;
+            }
+            else if (length >= 64 && length < 81)
+            {
+                n = 64;
+            }
+            else if (length >= 81 && length < 100)
+            {
+                n = 81;
+            }
+            else if (length >= 100 && length < 121)
+            {
+                n = 100;
+            }
             return n;
         }
 
@@ -127,35 +147,89 @@ namespace Du
             {
                 m = 5;
             }
+            else if (length >= 36 && length < 49)
+            {
+                m = 6;
+            }
+            else if (length >= 49 && length < 64)
+            {
+                m = 7;
+            }
+            else if (length >= 64 && length < 81)
+            {
+                m = 8;
+            }
+            else if (length >= 81 && length < 100)
+            {
+                m = 9;
+            }
+            else if (length >= 100 && length < 121)
+            {
+                m = 10;
+            }
             return m;
         }
 
-        private void CreateBtn_Click(object sender, EventArgs e)
+        private void CreateMBtn_Click(object sender, EventArgs e)
         {
-            int n, en;
-            n = Choose2(a.Length);
-            en = n + 1;
-            gl.CreateMGraph(n,en,a);
-            infolabel.Text = "建立完毕";
-
+            if (CreateMBtn.Text == "建立邻接矩阵")
+            {
+                int n, en;
+                n = Choose2(a.Length);
+                en = n + 1;
+                gl.CreateMGraph(n, en, a);
+                infolabel.Text = "建立完毕";
+            }
+            else if (CreateMBtn.Text == "建立邻接表")
+            {
+                gl.MatToList();
+                infolabel.Text = "建立完毕";
+            }
         }
 
         private void OutBtn_Click(object sender, EventArgs e)
         {
-            textBox1.Text = gl.DispMGraph();
-            infolabel.Text = "输出成功";
+            if (OutMBtn.Text == "输出邻接矩阵")
+            {
+                textBox1.Text = gl.DispMGraph();
+                infolabel.Text = "输出成功";
+            }
+            if (OutMBtn.Text == "输出邻接表")
+            {
+                textBox1.Text = gl.DispALGraph();
+                infolabel.Text = "输出成功";
+            }
         }
 
         private void CreateABtn_Click(object sender, EventArgs e)
         {
-            gl.MatToList();
-            infolabel.Text = "建立完毕";
+            if (CreateABtn.Text == "建立邻接表")
+            {
+                gl.MatToList();
+                infolabel.Text = "建立完毕";
+            }
+            if (CreateABtn.Text == "建立邻接矩阵")
+            {
+                int n, en;
+                n = Choose2(a.Length);
+                en = n + 4;
+                gl.CreateMGraph(n, en, a);
+                infolabel.Text = "建立完毕";
+            }
         }
 
         private void OutABtn_Click(object sender, EventArgs e)
         {
-            textBox1.Text = gl.DispALGraph();
-            infolabel.Text = "输出成功";
+            if (OutABtn.Text == "输出邻接表")
+            {
+                textBox1.Text = gl.DispALGraph();
+                infolabel.Text = "输出成功";
+            }
+            if (OutABtn.Text == "输出邻接矩阵")
+            {
+                textBox1.Text = gl.DispMGraph();
+                infolabel.Text = "输出成功";
+            }
         }
 
         private void BackBtn_Click(object sender, EventArgs e)
@@ -164,5 +238,55 @@ namespace Du
             Main.Show();
             this.Close();
         }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedIndex == 0)
+            {
+                CreateMBtn.Text = "建立邻接矩阵";
+                CreateABtn.Text = "建立邻接表";
+                OutMBtn.Text = "输出邻接矩阵";
+                OutABtn.Text = "输出邻接表";
+                DegreeBtn.Text="顶点和边";
+            }
+            else if (comboBox1.SelectedIndex == 1)
+            {
+                CreateMBtn.Text = "建立邻接表";
+                CreateABtn.Text = "建立邻接矩阵";
+                OutMBtn.Text = "输出邻接表";
+                OutABtn.Text = "输出邻接矩阵";
+                DegreeBtn.Text = "边和顶点";
+            }
+        }
+
+        private void DegreeBtn_Click(object sender, EventArgs e)
+        {
+            int i;
+            string astr = "";
+            string bstr = "";
+            string cstr = "";
+            if (DegreeBtn.Text == "顶点和边")
+            {
+                cstr ="顶点"+ "  \t" + "  \t" +"度"+"\r\n";
+                bstr ="\r\n"+ "顶点数：" + gl.Getn().ToString()+"  "+ "边数：" + gl.Gete().ToString();
+                for (i = 0; i < gl.Getn(); i++)
+                    astr += " " + i.ToString() + "： \t" + "  \t" + gl.Degree1(i).ToString() + "\r\n";
+                textBox1.Text = cstr + astr + "\n" + bstr;
+            }
+            else if (DegreeBtn.Text == "边和顶点")
+            {
+                int k, outs = 0, ins = 0, d;
+                for (k = 0; k < gl.Getn(); k++)
+                {
+                    gl.Degree4(k, ref outs, ref ins);
+                    d = outs + ins;
+                    astr += "  " + k.ToString() + ":  \t" + outs.ToString() + " \t" + ins.ToString() + " \t" + d.ToString() + "\r\n";
+                }                cstr = "顶点" + "  \t" + "出度" + "  \t" + "入度" + "  \t"  + "度" + "\r\n";
+                bstr = "\r\n" + "顶点数：" + gl.Getn().ToString() + "  " + "边数：" + gl.Gete().ToString();
+                textBox1.Text = cstr + astr + "\n" + bstr;
+            }
+        }
+
+        
     }
 }
