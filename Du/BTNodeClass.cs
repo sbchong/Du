@@ -346,6 +346,7 @@ namespace Du
         private string PathAdd(string pstr,string qstr)
         {
             int j = 0;
+            btstr = "";
             char[] pch = pstr.ToCharArray();
             char[] qch = qstr.ToCharArray();
             for (int i = 0; i < pch.Length / 2; i++)

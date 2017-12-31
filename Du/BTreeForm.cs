@@ -73,10 +73,11 @@ namespace Du
 
         private void PathBtn_Click(object sender, EventArgs e)
         {
+            label1.Text = "";
             string str1, str2;
             str1 = textBox3.Text.Trim();
-            str2 = textBox4.Text.Trim();
-            label1.Text = "路径为：" + b.Path(str1,str2);
+            str2 = textBox4.Text.Trim();           
+            label1.Text = "路径为："+", " + b.Path(str1,str2)+" ,";
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
